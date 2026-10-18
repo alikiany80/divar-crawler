@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:real-estate-listing:v1",
+  "title": "Normalized real-estate listing (v1)",
+  "description": "Output of every listing crawler (one object per JSONL line, or items of an HTTP batch). Unknown values are null, never 0. Money in Toman, dates ISO-8601 UTC, areas in m2.",
+  "type": "object",
+  "required": ["schemaVersion", "source", "sourceId", "url", "listingType", "hasFullDetails", "crawledAt"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "source": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{1,31}$", "description": "e.g. kilid, divar" },
+    "sourceId": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "url": { "type": "string", "format": "uri" },
+    "crawledAt": { "type": "string", "format": "date-time" },
+    "hasFullDetails": { "type": "boolean", "description": "false = list-row summary only; consumers must not overwrite known values with nulls from a summary" },
+
+    "title": { "type": ["string", "null"] },
+    "description": { "type": ["string", "null"] },
+    "listingType": { "enum": ["BUY", "RENT"] },
+    "propertyType": { "type": ["string", "null"], "description": "APARTMENT, VILLA, LAND, PRESALE, ... or source slug" },
+
+    "cityName": { "type": ["string", "null"] },
+    "regionName": { "type": ["string", "null"] },
+    "neighborhoodName": { "type": ["string", "null"] },
+    "locationLabel": { "type": ["string", "null"] },
+    "latitude": { "type": ["number", "null"], "minimum": -90, "maximum": 90 },
+    "longitude": { "type": ["number", "null"], "minimum": -180, "maximum": 180 },
+    "locationIsExact": { "type": ["boolean", "null"] },
+
+    "priceToman": { "type": ["number", "null"], "minimum": 0, "description": "BUY: total price. RENT: deposit (vadie)" },
+    "rentToman": { "type": ["number", "null"], "minimum": 0 },
+    "pricePerMeter": { "type": ["number", "null"], "minimum": 0 },
+    "isPriceNegotiable": { "type": ["boolean", "null"] },
+
+    "areaM2": { "type": ["number", "null"], "minimum": 0 },
+    "landAreaM2": { "type": ["number", "null"], "minimum": 0 },
+    "rooms": { "type": ["integer", "null"], "minimum": 0 },
+    "yearBuilt": { "type": ["integer", "null"], "description": "Jalali year" },
+    "buildingAge": { "type": ["integer", "null"] },
+    "floor": { "type": ["integer", "null"], "description": "0 = ground, negative = basement" },
+    "totalFloors": { "type": ["integer", "null"] },
+    "unitsPerFloor": { "type": ["integer", "null"] },
+    "parkingCount": { "type": ["integer", "null"], "minimum": 0 },
+    "hasParking": { "type": ["boolean", "null"] },
+    "hasElevator": { "type": ["boolean", "null"] },
+    "hasStorage": { "type": ["boolean", "null"] },
+    "hasBalcony": { "type": ["boolean", "null"] },
+
+    "publisherKind": { "type": ["string", "null"], "description": "PERSONAL | AGENCY | source value" },
+    "publisherName": { "type": ["string", "null"] },
+    "coverImageUrl": { "type": ["string", "null"] },
+    "imageCount": { "type": ["integer", "null"], "minimum": 0 },
+    "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+    "sourceUpdatedAt": { "type": ["string", "null"], "format": "date-time" },
+
+    "images": {
+      "type": ["array", "null"],
+      "description": "null/absent = unknown (keep existing); [] = no images",
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "additionalProperties": false,
+        "properties": {
+          "url": { "type": "string" },
+          "thumbnailUrl": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "attributes": {
+      "type": ["array", "null"],
+      "description": "Every raw spec row of the source page, so nothing is lost. null/absent = unknown (keep existing)",
+      "items": {
+        "type": "object",
+        "required": ["group", "name", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "group": { "type": "string" },
+          "name": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "details": {
+      "type": ["object", "null"],
+      "description": "Source-specific fields (snake_case keys; documented per crawler). May include raw_json with the original payload."
+    }
+  }
+}

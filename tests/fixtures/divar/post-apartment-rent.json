@@ -1,0 +1,1073 @@
+{
+  "sections": [
+    {
+      "section_name": "BREADCRUMB",
+      "widgets": [
+        {
+          "widget_type": "BREADCRUMB",
+          "data": {
+            "@type": "type.googleapis.com/widgets.BreadcrumbData",
+            "parent_items": [
+              {
+                "title": "املاک",
+                "action": {
+                  "type": "OPEN_POSTLIST_PAGE_GRPC",
+                  "payload": {
+                    "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                    "search_data": {
+                      "form_data": {
+                        "data": {
+                          "category": {
+                            "str": {
+                              "value": "real-estate"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "source_view": "CATEGORY_BREAD_CRUMB",
+                    "source_view_str": "CATEGORY_BREAD_CRUMB"
+                  }
+                }
+              },
+              {
+                "title": "اجارهٔ مسکونی",
+                "action": {
+                  "type": "OPEN_POSTLIST_PAGE_GRPC",
+                  "payload": {
+                    "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                    "search_data": {
+                      "form_data": {
+                        "data": {
+                          "category": {
+                            "str": {
+                              "value": "residential-rent"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "source_view": "CATEGORY_BREAD_CRUMB",
+                    "source_view_str": "CATEGORY_BREAD_CRUMB"
+                  }
+                }
+              },
+              {
+                "title": "اجارهٔ آپارتمان",
+                "action": {
+                  "type": "OPEN_POSTLIST_PAGE_GRPC",
+                  "payload": {
+                    "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                    "search_data": {
+                      "form_data": {
+                        "data": {
+                          "category": {
+                            "str": {
+                              "value": "apartment-rent"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "source_view": "CATEGORY_BREAD_CRUMB",
+                    "source_view_str": "CATEGORY_BREAD_CRUMB"
+                  }
+                }
+              }
+            ],
+            "current_page_title": "اجاره آپارتمان نمونه ۷۵ متری",
+            "padded": true
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "TITLE",
+      "widgets": [
+        {
+          "widget_type": "LEGEND_TITLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.LegendTitleRowData",
+            "title": "اجاره آپارتمان نمونه ۷۵ متری",
+            "high_level_heading": true,
+            "padding": "NO_PADDING"
+          }
+        },
+        {
+          "widget_type": "EXPANDABLE_SECTION",
+          "data": {
+            "@type": "type.googleapis.com/widgets.ExpandableSectionData",
+            "widget_list": [
+              {
+                "widget_type": "DESCRIPTION_ROW",
+                "data": {
+                  "@type": "type.googleapis.com/widgets.DescriptionRowData",
+                  "text": "انتشار آگهی: ۲۶ مهر ۱۴۰۵، ۱۲:۱۹\nآخرین به‌روز‌رسانی: ۲۶ مهر ۱۴۰۵، ۱۲:۲۰",
+                  "is_primary": true,
+                  "small": true,
+                  "text_alignment": "RIGHT"
+                }
+              }
+            ],
+            "title": "دقایقی پیش در تهران، صادقیه، خیابان نمونه",
+            "icon": {}
+          }
+        },
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "زنگ خطرهای قبل از معامله",
+            "action": {
+              "type": "OPEN_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.OpenPagePayload",
+                "request_http_method": "POST",
+                "request_data": {
+                  "@type": "type.googleapis.com/post_api_v2.GetFraudAlertPageRequest.Data",
+                  "category": "apartment-rent"
+                },
+                "specification": {
+                  "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification",
+                  "navigation_button": "BACK"
+                },
+                "is_modal": true,
+                "rest_request_path": "/v8/postview/fraud-alert",
+                "grpc_request_path": "/post_api_v2.PostApi/GetFraudAlertPage"
+              }
+            },
+            "has_divider": true,
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/warning.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/warning.png",
+              "icon_name": "WARNING",
+              "icon_color": "ICON_SECONDARY"
+            },
+            "has_arrow": true,
+            "last_notification_date": "0001-01-01T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "DESCRIPTION",
+      "widgets": [
+        {
+          "widget_type": "TITLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.TitleRowData",
+            "text": "توضیحات",
+            "text_color": "TEXT_PRIMARY",
+            "text_type": "SECONDARY"
+          }
+        },
+        {
+          "widget_type": "DESCRIPTION_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.DescriptionRowData",
+            "text": "توضیحات نمونه برای تست اجاره.\nواحد ۷۵ متری با امکانات کامل.",
+            "is_primary": true,
+            "text_alignment": "RIGHT"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "IMAGE",
+      "widgets": [
+        {
+          "widget_type": "IMAGE_CAROUSEL",
+          "data": {
+            "@type": "type.googleapis.com/widgets.ImageCarouselData",
+            "items": [
+              {
+                "image": {
+                  "url": "https://example.com/img/1.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/1-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/2.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/2-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/3.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/3-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/4.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/4-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/5.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/5-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/6.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/6-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/7.jpg",
+                  "alt": "اجاره آپارتمان نمونه ۷۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/7-thumb.jpg"
+                }
+              }
+            ],
+            "image_aspect_ratio": {
+              "dynamic_aspect_ratio": {
+                "height": 3,
+                "width": 4
+              }
+            },
+            "has_preview": true,
+            "has_thumbnails": true,
+            "show_tooltip": true,
+            "tooltip_data": {
+              "icon": {
+                "image_url_dark": "https://example.com/icons/dark/white_primary/v1/fullscreen.png",
+                "image_url_light": "https://example.com/icons/light/white_primary/v1/fullscreen.png",
+                "icon_name": "FULLSCREEN",
+                "icon_color": "WHITE_PRIMARY"
+              },
+              "text": "۷"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "LIST_DATA",
+      "widgets": [
+        {
+          "widget_type": "GROUP_INFO_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.GroupInfoRow",
+            "items": [
+              {
+                "title": "متراژ",
+                "value": "۷۵"
+              },
+              {
+                "title": "ساخت",
+                "value": "۱۳۹۳"
+              },
+              {
+                "title": "اتاق",
+                "value": "۲"
+              }
+            ],
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "UNEXPANDABLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "تصویر‌ها برای همین ملک است؟",
+            "value": "بله",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "FEATURE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "ودیعه و اجارهٔ این ملک قابل تبدیل است.",
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/exchange.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/exchange.png",
+              "icon_name": "EXCHANGE",
+              "icon_color": "ICON_SECONDARY"
+            }
+          }
+        },
+        {
+          "widget_type": "RENT_SLIDER",
+          "data": {
+            "@type": "type.googleapis.com/widgets.RentSliderData",
+            "credit": {
+              "value": "1000000000",
+              "transformed_value": "1050000000"
+            },
+            "rent": {
+              "value": "45000000",
+              "transformed_value": "43500000"
+            },
+            "label": "برای تبدیل بکشید",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "UNEXPANDABLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "طبقه",
+            "value": "۴ از ۵",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "SECTION_TITLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SectionTitleRowData",
+            "title": "ویژگی‌ها و امکانات",
+            "title_color": "TEXT_PRIMARY",
+            "padding": "ALT"
+          }
+        },
+        {
+          "widget_type": "GROUP_FEATURE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.GroupFeatureRow",
+            "items": [
+              {
+                "title": "آسانسور",
+                "icon": {
+                  "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/elevator.png",
+                  "image_url_light": "https://example.com/icons/light/icon_secondary/v1/elevator.png",
+                  "icon_name": "ELEVATOR",
+                  "icon_color": "ICON_SECONDARY"
+                },
+                "available": true
+              },
+              {
+                "title": "پارکینگ",
+                "icon": {
+                  "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/parking.png",
+                  "image_url_light": "https://example.com/icons/light/icon_secondary/v1/parking.png",
+                  "icon_name": "PARKING",
+                  "icon_color": "ICON_SECONDARY"
+                },
+                "available": true
+              },
+              {
+                "title": "انباری",
+                "icon": {
+                  "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/cabinet.png",
+                  "image_url_light": "https://example.com/icons/light/icon_secondary/v1/cabinet.png",
+                  "icon_name": "CABINET",
+                  "icon_color": "ICON_SECONDARY"
+                },
+                "available": true
+              }
+            ],
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "سایر ویژگی‌ها و امکانات",
+            "action": {
+              "type": "LOAD_MODAL_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.LoadModalPagePayload",
+                "modal_page": {
+                  "title": "ویژگی‌ها و امکانات",
+                  "widget_list": [
+                    {
+                      "widget_type": "TITLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.TitleRowData",
+                        "text": "ویژگی‌ها",
+                        "has_divider": true,
+                        "text_color": "TEXT_PRIMARY"
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "تعداد واحد در طبقه",
+                        "value": "۲",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "تعداد کل طبقات ساختمان",
+                        "value": "۵",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "جهت ساختمان",
+                        "value": "شمالی",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "حیوان خانگی مجاز",
+                        "value": "خیر",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "نوع آشپزخانه",
+                        "value": "اپن",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "DESCRIPTION_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.DescriptionRowData",
+                        "text": "مناسب برای",
+                        "is_primary": true,
+                        "expandable": true,
+                        "padded": true,
+                        "preview_max_line": 4,
+                        "text_alignment": "RIGHT"
+                      }
+                    },
+                    {
+                      "widget_type": "WRAPPER_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.WrapperRowData",
+                        "chip_list": {
+                          "chips": [
+                            {
+                              "text": "خانواده",
+                              "type": "ACTION",
+                              "small": true
+                            },
+                            {
+                              "text": "مجرد",
+                              "type": "ACTION",
+                              "small": true
+                            }
+                          ]
+                        },
+                        "padded": true
+                      }
+                    },
+                    {
+                      "widget_type": "DESCRIPTION_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.DescriptionRowData",
+                        "text": "جنس کابینت",
+                        "is_primary": true,
+                        "expandable": true,
+                        "padded": true,
+                        "preview_max_line": 4,
+                        "text_alignment": "RIGHT"
+                      }
+                    },
+                    {
+                      "widget_type": "WRAPPER_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.WrapperRowData",
+                        "chip_list": {
+                          "chips": [
+                            {
+                              "text": "MDF",
+                              "type": "ACTION",
+                              "small": true
+                            }
+                          ]
+                        },
+                        "padded": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "حداقل مدت قرارداد",
+                        "value": "۱۲ ماه",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "TITLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.TitleRowData",
+                        "text": "امکانات",
+                        "has_divider": true,
+                        "text_color": "TEXT_PRIMARY"
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "آسانسور",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/elevator.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/elevator.png",
+                          "icon_name": "ELEVATOR",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "پارکینگ",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/parking.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/parking.png",
+                          "icon_name": "PARKING",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "انباری",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/cabinet.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/cabinet.png",
+                          "icon_name": "CABINET",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "جنس کف سرامیک",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/texture.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/texture.png",
+                          "icon_name": "TEXTURE",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "سرویس بهداشتی ایرانی و فرنگی",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/wc.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/wc.png",
+                          "icon_name": "WC",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "بالکن دارد",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/balcony.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/balcony.png",
+                          "icon_name": "BALCONY",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "سرمایش کولر گازی",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/snowflake.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/snowflake.png",
+                          "icon_name": "SNOWFLAKE",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "گرمایش شوفاژ",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/sunny.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/sunny.png",
+                          "icon_name": "SUNNY",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "تأمین‌کننده آب گرم پکیج",
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/thermometer.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/thermometer.png",
+                          "icon_name": "THERMOMETER",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "has_divider": true,
+            "icon": {},
+            "has_arrow": true,
+            "last_notification_date": "0001-01-01T00:00:00Z",
+            "fullwidth": true
+          }
+        },
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "بررسی و کارشناسی",
+            "action": {
+              "type": "OPEN_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.OpenPagePayload",
+                "request_http_method": "POST",
+                "request_data": {
+                  "@type": "type.googleapis.com/service_providers.GetServiceProvidersPageRequest.RequestData",
+                  "source_v2": "DEMAND_POST",
+                  "filter": {
+                    "service_types": [
+                      "REPORT_INSPECTION"
+                    ],
+                    "city_id": 1,
+                    "category": "apartment-rent",
+                    "post_token": "gaTEST002",
+                    "touchpoint": "DEMAND_POST"
+                  },
+                  "action_data_builder": {
+                    "post_token": "gaTEST002",
+                    "touchpoint": "DEMAND_POST",
+                    "source": "DEMAND_POST",
+                    "lead_source": "DEMAND"
+                  },
+                  "display_data": {
+                    "page_title": "بررسی و کارشناسی"
+                  },
+                  "source": "DEMAND_POST",
+                  "lead_source": "DEMAND"
+                },
+                "specification": {
+                  "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification"
+                },
+                "is_modal": true,
+                "rest_request_path": "/v8/open-platform/service-providers",
+                "grpc_request_path": "/service_providers.ServiceProviders/GetServiceProvidersPage"
+              }
+            },
+            "has_divider": true,
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/article-magnifier.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/article-magnifier.png",
+              "icon_name": "ARTICLE_MAGNIFIER",
+              "icon_color": "ICON_SECONDARY"
+            },
+            "has_arrow": true,
+            "last_notification_date": "0001-01-01T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "TAGS",
+      "widgets": [
+        {
+          "widget_type": "WRAPPER_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.WrapperRowData",
+            "chip_list": {
+              "chips": [
+                {
+                  "text": "اجارهٔ آپارتمان",
+                  "type": "ACTION",
+                  "action": {
+                    "type": "OPEN_POSTLIST_PAGE_GRPC",
+                    "payload": {
+                      "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                      "search_data": {
+                        "form_data": {
+                          "data": {
+                            "category": {
+                              "str": {
+                                "value": "apartment-rent"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "source_view": "CATEGORY_BREAD_CRUMB",
+                      "source_view_str": "CATEGORY_BREAD_CRUMB"
+                    }
+                  }
+                },
+                {
+                  "text": "اجارهٔ آپارتمان در صادقیه",
+                  "type": "ACTION",
+                  "action": {
+                    "type": "OPEN_POSTLIST_PAGE_GRPC",
+                    "payload": {
+                      "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                      "search_data": {
+                        "form_data": {
+                          "data": {
+                            "category": {
+                              "str": {
+                                "value": "apartment-rent"
+                              }
+                            },
+                            "districts": {
+                              "repeated_string": {
+                                "value": [
+                                  "172"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "source_view": "CATEGORY_BREAD_CRUMB",
+                      "source_view_str": "CATEGORY_BREAD_CRUMB"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "MAP",
+      "widgets": [
+        {
+          "widget_type": "MAP_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.MapRowData",
+            "location": {
+              "exact_data": {
+                "point": {
+                  "latitude": 35.717,
+                  "longitude": 51.342
+                }
+              }
+            },
+            "image_url": "https://example.com/img/map.png"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "NOTE",
+      "widgets": [
+        {
+          "widget_type": "NOTE",
+          "data": {
+            "@type": "type.googleapis.com/widgets.NoteData",
+            "title": "یادداشت من",
+            "button_title": "ویرایش یادداشت",
+            "post_token": "gaTEST002",
+            "icon_button": {
+              "icon": {
+                "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/more_vert.png",
+                "image_url_light": "https://example.com/icons/light/icon_secondary/v1/more_vert.png",
+                "icon_name": "MORE_VERT",
+                "icon_color": "ICON_SECONDARY"
+              },
+              "action": {
+                "type": "LOAD_MENU",
+                "payload": {
+                  "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+                  "menu": {
+                    "items": [
+                      {
+                        "text": "ویرایش یادداشت",
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/edit.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/edit.png",
+                          "icon_name": "EDIT",
+                          "icon_color": "ICON_SECONDARY"
+                        },
+                        "action": {
+                          "type": "NOTE",
+                          "payload": {
+                            "@type": "type.googleapis.com/widgets.NotePayload",
+                            "post_token": "gaTEST002",
+                            "max_character_count": 256
+                          }
+                        },
+                        "alignment": "RIGHT"
+                      },
+                      {
+                        "text": "حذف یادداشت",
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_primary/v1/trash_o.png",
+                          "image_url_light": "https://example.com/icons/light/icon_primary/v1/trash_o.png",
+                          "icon_name": "TRASH_O",
+                          "icon_color": "ICON_PRIMARY"
+                        },
+                        "action": {
+                          "type": "MAKE_NETWORK_CALL",
+                          "payload": {
+                            "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+                            "grpc_request_path": "/yaad_v2.YaadV2/DeleteNoteV2",
+                            "rest_request_path": "/yaad/delete-note-v2",
+                            "request_data": {
+                              "@type": "type.googleapis.com/yaad_v2.DeleteNoteV2Request.RequestData",
+                              "token": "gaTEST002"
+                            },
+                            "needs_auth": true
+                          }
+                        },
+                        "alignment": "RIGHT",
+                        "state": "STATE_NEGATIVE"
+                      }
+                    ],
+                    "banner": {}
+                  },
+                  "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "STATIC",
+      "widgets": [
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "گزارش آگهی",
+            "action": {
+              "type": "OPEN_FORM_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.OpenFormPagePayload",
+                "grpc_servicer": "/post_quality.PostQualityFeedback/GetFeedbackForm",
+                "request_data": {
+                  "@type": "type.googleapis.com/post_quality.GetFeedbackFormRequest.RequestData",
+                  "post_token": "gaTEST002"
+                },
+                "rest_request_path": "/v8/post-quality/feedback-form"
+              }
+            },
+            "has_divider": true,
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/report.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/report.png",
+              "icon_name": "REPORT",
+              "icon_color": "ICON_SECONDARY"
+            },
+            "last_notification_date": "0001-01-01T00:00:00Z"
+          }
+        }
+      ]
+    }
+  ],
+  "share": {
+    "title": "اجاره آپارتمان نمونه ۷۵ متری",
+    "web_url": "https://divar.ir/v/gaTEST002"
+  },
+  "seo": {
+    "title": "اجاره آپارتمان نمونه ۷۵ متری در تهران",
+    "description": "آگهی اجاره آپارتمان نمونه ۷۵ متری",
+    "android_package_name": "ir.divar",
+    "web_info": {
+      "title": "اجاره آپارتمان نمونه ۷۵ متری",
+      "district_persian": "صادقیه",
+      "city_persian": "تهران",
+      "category_slug_persian": "اجارهٔ آپارتمان"
+    },
+    "unavailable_after": "2026-11-18T12:19:27.866514",
+    "bread_crumb": [
+      {
+        "name": "اجارهٔ آپارتمان",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "category": {
+                "str": {
+                  "value": "apartment-rent"
+                }
+              },
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "172"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "اجارهٔ مسکونی",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "category": {
+                "str": {
+                  "value": "residential-rent"
+                }
+              },
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "172"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "املاک",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "172"
+                  ]
+                }
+              },
+              "category": {
+                "str": {
+                  "value": "real-estate"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "صادقیه",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "172"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "1",
+        "search_data": {
+          "form_data": {}
+        }
+      },
+      {
+        "name": "دیوار"
+      }
+    ],
+    "post_seo_schema": {
+      "@context": "https://schema.org",
+      "web_info": {
+        "city_persian": "تهران",
+        "district_persian": "صادقیه",
+        "category_slug_persian": "اجارهٔ آپارتمان",
+        "title": "اجاره آپارتمان نمونه ۷۵ متری"
+      },
+      "floorSize": {
+        "@type": "QuantitativeValue",
+        "value": "75",
+        "unitCode": "MTK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "address": "تهران, صادقیه",
+        "latitude": "35.717",
+        "longitude": "51.342"
+      },
+      "@type": "Apartment",
+      "name": "اجاره آپارتمان نمونه ۷۵ متری",
+      "numberOfRooms": "دو",
+      "accommodationCategory": "اجارهٔ آپارتمان",
+      "url": "https://divar.ir/v/gaTEST002",
+      "description": "توضیحات نمونه برای تست اجاره.\nواحد ۷۵ متری با امکانات کامل.",
+      "image": "https://example.com/img/1.jpg"
+    },
+    "image_url": "https://example.com/img/1.jpg"
+  },
+  "webengage": {
+    "gender": "",
+    "city": "tehran",
+    "price": 0,
+    "status": "",
+    "rent": 45000000,
+    "originality": "",
+    "brand_model": "",
+    "cat_3": "apartment-rent",
+    "business_type": "personal",
+    "token": "gaTEST002",
+    "credit": 1000000000,
+    "business_ref": "",
+    "cat_2": "residential-rent",
+    "district": "sadeghiyeh",
+    "source_view": "",
+    "category": "apartment-rent",
+    "cat_1": "real-estate",
+    "image_count": 7
+  },
+  "analytics": {
+    "cat1": "real-estate",
+    "cat2": "residential-rent",
+    "cat3": "apartment-rent",
+    "city": "tehran"
+  },
+  "city": {
+    "city_id": "1",
+    "name": "تهران",
+    "parent_id": "904",
+    "second_slug": "tehran"
+  }
+}

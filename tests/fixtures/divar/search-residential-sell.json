@@ -1,0 +1,168 @@
+{
+  "list_top_widgets": [
+    {
+      "widget_type": "POST_LIST_HEADLINE",
+      "data": {
+        "@type": "type.googleapis.com/widgets.PostListHeadline",
+        "text": "خرید و فروش املاک مسکونی در تهران"
+      }
+    },
+    {
+      "widget_type": "MAP_POST_COUNT_ROW",
+      "data": {
+        "@type": "type.googleapis.com/widgets.MapPostCountRowData"
+      },
+      "uid": "map_post_count_row"
+    }
+  ],
+  "list_widgets": [
+    {
+      "widget_type": "POST_ROW",
+      "data": {
+        "@type": "type.googleapis.com/widgets.PostRowData",
+        "title": "آپارتمان نمونه ۱۳۷ متری",
+        "action": {
+          "type": "VIEW_POST",
+          "payload": {
+            "@type": "type.googleapis.com/widgets.ViewPostPayload",
+            "token": "gaTEST101",
+            "web_info": {
+              "title": "آپارتمان نمونه ۱۳۷ متری",
+              "district_persian": "زنجان جنوبی",
+              "city_persian": "تهران"
+            }
+          }
+        },
+        "image_url": "https://example.com/img/101-thumb.jpg",
+        "bottom_description_text": "آژانس نمونه در زنجان جنوبی",
+        "red_text": "پله شده",
+        "middle_description_text": "۲۷,۵۰۰,۰۰۰,۰۰۰ تومان",
+        "has_divider": true,
+        "image_count": 10,
+        "image_top_left_tag": {
+          "text": "پله",
+          "icon": {
+            "image_url_dark": "https://example.com/icons/dark/white_primary/v1/stairs.png",
+            "image_url_light": "https://example.com/icons/light/white_primary/v1/stairs.png",
+            "icon_name": "STAIRS",
+            "icon_color": "WHITE_PRIMARY"
+          }
+        },
+        "token": "gaTEST101",
+        "should_indicate_seen_status": true,
+        "layout_type": "GRID_ITEM"
+      }
+    },
+    {
+      "widget_type": "POST_ROW",
+      "data": {
+        "@type": "type.googleapis.com/widgets.PostRowData",
+        "title": "آپارتمان نمونه ۸۶ متری",
+        "action": {
+          "type": "VIEW_POST",
+          "payload": {
+            "@type": "type.googleapis.com/widgets.ViewPostPayload",
+            "token": "gaTEST102",
+            "web_info": {
+              "title": "آپارتمان نمونه ۸۶ متری",
+              "district_persian": "دانشگاه شریف",
+              "city_persian": "تهران"
+            }
+          }
+        },
+        "image_url": "https://example.com/img/102-thumb.jpg",
+        "bottom_description_text": "آژانس آژانس املاک نمونه در دانشگاه شریف",
+        "red_text": "پله شده",
+        "middle_description_text": "۲۶,۰۰۰,۰۰۰,۰۰۰ تومان",
+        "has_divider": true,
+        "image_count": 1,
+        "image_top_left_tag": {
+          "text": "پله",
+          "icon": {
+            "image_url_dark": "https://example.com/icons/dark/white_primary/v1/stairs.png",
+            "image_url_light": "https://example.com/icons/light/white_primary/v1/stairs.png",
+            "icon_name": "STAIRS",
+            "icon_color": "WHITE_PRIMARY"
+          }
+        },
+        "token": "gaTEST102",
+        "should_indicate_seen_status": true,
+        "layout_type": "GRID_ITEM"
+      }
+    },
+    {
+      "widget_type": "POST_ROW",
+      "data": {
+        "@type": "type.googleapis.com/widgets.PostRowData",
+        "title": "آپارتمان نمونه ۴۹ متری",
+        "action": {
+          "type": "VIEW_POST",
+          "payload": {
+            "@type": "type.googleapis.com/widgets.ViewPostPayload",
+            "token": "gaTEST103",
+            "web_info": {
+              "title": "آپارتمان نمونه ۴۹ متری",
+              "district_persian": "مجیدیه",
+              "city_persian": "تهران"
+            }
+          }
+        },
+        "image_url": "https://example.com/img/103-thumb.jpg",
+        "bottom_description_text": "لحظاتی پیش در مجیدیه",
+        "middle_description_text": "۹,۵۰۰,۰۰۰,۰۰۰ تومان",
+        "has_divider": true,
+        "image_count": 6,
+        "image_top_left_tag": {
+          "text": "۶",
+          "icon": {
+            "image_url_dark": "https://example.com/icons/dark/white_primary/v1/camera.png",
+            "image_url_light": "https://example.com/icons/light/white_primary/v1/camera.png",
+            "icon_name": "CAMERA",
+            "icon_color": "WHITE_PRIMARY"
+          },
+          "is_icon_left": true
+        },
+        "token": "gaTEST103",
+        "should_indicate_seen_status": true,
+        "layout_type": "GRID_ITEM"
+      }
+    }
+  ],
+  "search_data": {
+    "form_data": {
+      "data": {
+        "category": {
+          "str": {
+            "value": "residential-sell"
+          }
+        }
+      }
+    },
+    "server_payload": {
+      "@type": "type.googleapis.com/widgets.SearchData.ServerPayload",
+      "additional_form_data": {
+        "data": {
+          "sort": {
+            "str": {
+              "value": "sort_date"
+            }
+          }
+        }
+      }
+    }
+  },
+  "search_bar": {},
+  "pagination": {
+    "has_next_page": true,
+    "data": {
+      "@type": "type.googleapis.com/post_list.PaginationData",
+      "last_post_date": "2026-10-18T08:56:50.444264Z",
+      "page": 1,
+      "layer_page": 1,
+      "cumulative_widgets_count": 26,
+      "viewed_tokens": "SYNTHETIC_VIEWED_TOKENS"
+    },
+    "is_first_page": true
+  },
+  "show_no_search_result_notice": true
+}

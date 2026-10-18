@@ -1,0 +1,1045 @@
+{
+  "sections": [
+    {
+      "section_name": "BREADCRUMB",
+      "widgets": [
+        {
+          "widget_type": "BREADCRUMB",
+          "data": {
+            "@type": "type.googleapis.com/widgets.BreadcrumbData",
+            "parent_items": [
+              {
+                "title": "املاک",
+                "action": {
+                  "type": "OPEN_POSTLIST_PAGE_GRPC",
+                  "payload": {
+                    "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                    "search_data": {
+                      "form_data": {
+                        "data": {
+                          "category": {
+                            "str": {
+                              "value": "real-estate"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "source_view": "CATEGORY_BREAD_CRUMB",
+                    "source_view_str": "CATEGORY_BREAD_CRUMB"
+                  }
+                }
+              },
+              {
+                "title": "فروش مسکونی",
+                "action": {
+                  "type": "OPEN_POSTLIST_PAGE_GRPC",
+                  "payload": {
+                    "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                    "search_data": {
+                      "form_data": {
+                        "data": {
+                          "category": {
+                            "str": {
+                              "value": "residential-sell"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "source_view": "CATEGORY_BREAD_CRUMB",
+                    "source_view_str": "CATEGORY_BREAD_CRUMB"
+                  }
+                }
+              },
+              {
+                "title": "فروش خانه و ویلا",
+                "action": {
+                  "type": "OPEN_POSTLIST_PAGE_GRPC",
+                  "payload": {
+                    "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                    "search_data": {
+                      "form_data": {
+                        "data": {
+                          "category": {
+                            "str": {
+                              "value": "house-villa-sell"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "source_view": "CATEGORY_BREAD_CRUMB",
+                    "source_view_str": "CATEGORY_BREAD_CRUMB"
+                  }
+                }
+              }
+            ],
+            "current_page_title": "ویلای نمونه ۲۸۵ متری",
+            "padded": true
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "TITLE",
+      "widgets": [
+        {
+          "widget_type": "LEGEND_TITLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.LegendTitleRowData",
+            "title": "ویلای نمونه ۲۸۵ متری",
+            "high_level_heading": true,
+            "padding": "NO_PADDING"
+          }
+        },
+        {
+          "widget_type": "EXPANDABLE_SECTION",
+          "data": {
+            "@type": "type.googleapis.com/widgets.ExpandableSectionData",
+            "widget_list": [
+              {
+                "widget_type": "DESCRIPTION_ROW",
+                "data": {
+                  "@type": "type.googleapis.com/widgets.DescriptionRowData",
+                  "text": "انتشار آگهی: ۱۹ مهر ۱۴۰۵، ۱۶:۰۰\nآخرین به‌روز‌رسانی: ۲۰ مهر ۱۴۰۵، ۱۸:۱۸",
+                  "is_primary": true,
+                  "small": true,
+                  "text_alignment": "RIGHT"
+                }
+              }
+            ],
+            "title": "۶ روز پیش در تهران، شهران شمالی، خیابان نمونه",
+            "icon": {}
+          }
+        },
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "زنگ خطرهای قبل از معامله",
+            "action": {
+              "type": "OPEN_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.OpenPagePayload",
+                "request_http_method": "POST",
+                "request_data": {
+                  "@type": "type.googleapis.com/post_api_v2.GetFraudAlertPageRequest.Data",
+                  "category": "house-villa-sell"
+                },
+                "specification": {
+                  "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification",
+                  "navigation_button": "BACK"
+                },
+                "is_modal": true,
+                "rest_request_path": "/v8/postview/fraud-alert",
+                "grpc_request_path": "/post_api_v2.PostApi/GetFraudAlertPage"
+              }
+            },
+            "has_divider": true,
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/warning.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/warning.png",
+              "icon_name": "WARNING",
+              "icon_color": "ICON_SECONDARY"
+            },
+            "has_arrow": true,
+            "last_notification_date": "0001-01-01T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "DESCRIPTION",
+      "widgets": [
+        {
+          "widget_type": "TITLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.TitleRowData",
+            "text": "توضیحات",
+            "text_color": "TEXT_PRIMARY",
+            "text_type": "SECONDARY"
+          }
+        },
+        {
+          "widget_type": "DESCRIPTION_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.DescriptionRowData",
+            "text": "توضیحات نمونه برای تست.\nخانه ویلایی با ۲۸۵ متر زمین و ۱۴۰ متر بنا.\nحیاط و استخر دارد.",
+            "is_primary": true,
+            "text_alignment": "RIGHT"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "IMAGE",
+      "widgets": [
+        {
+          "widget_type": "IMAGE_CAROUSEL",
+          "data": {
+            "@type": "type.googleapis.com/widgets.ImageCarouselData",
+            "items": [
+              {
+                "image": {
+                  "url": "https://example.com/img/1.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/1-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/2.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/2-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/3.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/3-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/4.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/4-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/5.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/5-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/6.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/6-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/7.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/7-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/8.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/8-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/9.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/9-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/10.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/10-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/11.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/11-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/12.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/12-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/13.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/13-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/14.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/14-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/15.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/15-thumb.jpg"
+                }
+              },
+              {
+                "image": {
+                  "url": "https://example.com/img/16.jpg",
+                  "alt": "ویلای نمونه ۲۸۵ متری|دیوار",
+                  "thumbnail_url": "https://example.com/img/16-thumb.jpg"
+                }
+              }
+            ],
+            "image_aspect_ratio": {
+              "dynamic_aspect_ratio": {
+                "height": 3,
+                "width": 4
+              }
+            },
+            "has_preview": true,
+            "has_thumbnails": true,
+            "show_tooltip": true,
+            "tooltip_data": {
+              "icon": {
+                "image_url_dark": "https://example.com/icons/dark/white_primary/v1/fullscreen.png",
+                "image_url_light": "https://example.com/icons/light/white_primary/v1/fullscreen.png",
+                "icon_name": "FULLSCREEN",
+                "icon_color": "WHITE_PRIMARY"
+              },
+              "text": "۱۶"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "LIST_DATA",
+      "widgets": [
+        {
+          "widget_type": "GROUP_INFO_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.GroupInfoRow",
+            "items": [
+              {
+                "title": "متراژ",
+                "value": "۱۴۰"
+              },
+              {
+                "title": "ساخت",
+                "value": "۱۴۰۰"
+              },
+              {
+                "title": "اتاق",
+                "value": "۲"
+              }
+            ],
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "UNEXPANDABLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "تصویر‌ها برای همین ملک است؟",
+            "value": "بله",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "UNEXPANDABLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "متراژ زمین",
+            "value": "۲۸۵ متر مربع",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "UNEXPANDABLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "قیمت کل",
+            "value": "‏۹۰,۰۰۰,۰۰۰,۰۰۰ تومان",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "UNEXPANDABLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "قیمت هر متر",
+            "value": "‏۳۱۵,۷۸۹,۰۰۰ تومان",
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "SECTION_TITLE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SectionTitleRowData",
+            "title": "ویژگی‌ها و امکانات",
+            "title_color": "TEXT_PRIMARY",
+            "padding": "ALT"
+          }
+        },
+        {
+          "widget_type": "GROUP_FEATURE_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.GroupFeatureRow",
+            "items": [
+              {
+                "title": "پارکینگ",
+                "icon": {
+                  "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/parking.png",
+                  "image_url_light": "https://example.com/icons/light/icon_secondary/v1/parking.png",
+                  "icon_name": "PARKING",
+                  "icon_color": "ICON_SECONDARY"
+                },
+                "available": true
+              },
+              {
+                "title": "انباری",
+                "icon": {
+                  "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/cabinet.png",
+                  "image_url_light": "https://example.com/icons/light/icon_secondary/v1/cabinet.png",
+                  "icon_name": "CABINET",
+                  "icon_color": "ICON_SECONDARY"
+                },
+                "available": true
+              }
+            ],
+            "has_divider": true
+          }
+        },
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "سایر ویژگی‌ها و امکانات",
+            "action": {
+              "type": "LOAD_MODAL_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.LoadModalPagePayload",
+                "modal_page": {
+                  "title": "ویژگی‌ها و امکانات",
+                  "widget_list": [
+                    {
+                      "widget_type": "TITLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.TitleRowData",
+                        "text": "ویژگی‌ها",
+                        "has_divider": true,
+                        "text_color": "TEXT_PRIMARY"
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "جهت ساختمان",
+                        "value": "شمالی",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "سند",
+                        "value": "تک‌برگ",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "نوع بنا",
+                        "value": "ویلایی مستقل",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "نوع استخر",
+                        "value": "روباز",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "تعداد طبقات بنا",
+                        "value": "۱",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "عرض گذر",
+                        "value": "۱۵ متر",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "حیاط",
+                        "value": "دارد",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "استخر",
+                        "value": "دارد",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "جکوزی",
+                        "value": "دارد",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "سونا",
+                        "value": "دارد",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "UNEXPANDABLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+                        "title": "فضای سبز/باغچه",
+                        "value": "دارد",
+                        "has_divider": true
+                      }
+                    },
+                    {
+                      "widget_type": "TITLE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.TitleRowData",
+                        "text": "امکانات",
+                        "has_divider": true,
+                        "text_color": "TEXT_PRIMARY"
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "پارکینگ",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/parking.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/parking.png",
+                          "icon_name": "PARKING",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "انباری",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/cabinet.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/cabinet.png",
+                          "icon_name": "CABINET",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "جنس کف سرامیک",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/texture.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/texture.png",
+                          "icon_name": "TEXTURE",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "تأمین‌کننده آب گرم موتورخانه",
+                        "has_divider": true,
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/thermometer.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/thermometer.png",
+                          "icon_name": "THERMOMETER",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    },
+                    {
+                      "widget_type": "FEATURE_ROW",
+                      "data": {
+                        "@type": "type.googleapis.com/widgets.FeatureRowData",
+                        "title": "بالکن دارد",
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/balcony.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/balcony.png",
+                          "icon_name": "BALCONY",
+                          "icon_color": "ICON_SECONDARY"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "has_divider": true,
+            "icon": {},
+            "has_arrow": true,
+            "last_notification_date": "0001-01-01T00:00:00Z",
+            "fullwidth": true
+          }
+        },
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "بررسی و کارشناسی",
+            "action": {
+              "type": "OPEN_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.OpenPagePayload",
+                "request_http_method": "POST",
+                "request_data": {
+                  "@type": "type.googleapis.com/service_providers.GetServiceProvidersPageRequest.RequestData",
+                  "source_v2": "DEMAND_POST",
+                  "filter": {
+                    "service_types": [
+                      "REPORT_INSPECTION"
+                    ],
+                    "city_id": 1,
+                    "category": "house-villa-sell",
+                    "post_token": "gaTEST003",
+                    "touchpoint": "DEMAND_POST"
+                  },
+                  "action_data_builder": {
+                    "post_token": "gaTEST003",
+                    "touchpoint": "DEMAND_POST",
+                    "source": "DEMAND_POST",
+                    "lead_source": "DEMAND"
+                  },
+                  "display_data": {
+                    "page_title": "بررسی و کارشناسی"
+                  },
+                  "source": "DEMAND_POST",
+                  "lead_source": "DEMAND"
+                },
+                "specification": {
+                  "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification"
+                },
+                "is_modal": true,
+                "rest_request_path": "/v8/open-platform/service-providers",
+                "grpc_request_path": "/service_providers.ServiceProviders/GetServiceProvidersPage"
+              }
+            },
+            "has_divider": true,
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/article-magnifier.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/article-magnifier.png",
+              "icon_name": "ARTICLE_MAGNIFIER",
+              "icon_color": "ICON_SECONDARY"
+            },
+            "has_arrow": true,
+            "last_notification_date": "0001-01-01T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "TAGS",
+      "widgets": [
+        {
+          "widget_type": "WRAPPER_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.WrapperRowData",
+            "chip_list": {
+              "chips": [
+                {
+                  "text": "فروش خانه و ویلا",
+                  "type": "ACTION",
+                  "action": {
+                    "type": "OPEN_POSTLIST_PAGE_GRPC",
+                    "payload": {
+                      "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                      "search_data": {
+                        "form_data": {
+                          "data": {
+                            "category": {
+                              "str": {
+                                "value": "house-villa-sell"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "source_view": "CATEGORY_BREAD_CRUMB",
+                      "source_view_str": "CATEGORY_BREAD_CRUMB"
+                    }
+                  }
+                },
+                {
+                  "text": "فروش خانه و ویلا در شهران شمالی",
+                  "type": "ACTION",
+                  "action": {
+                    "type": "OPEN_POSTLIST_PAGE_GRPC",
+                    "payload": {
+                      "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+                      "search_data": {
+                        "form_data": {
+                          "data": {
+                            "category": {
+                              "str": {
+                                "value": "house-villa-sell"
+                              }
+                            },
+                            "districts": {
+                              "repeated_string": {
+                                "value": [
+                                  "151"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "source_view": "CATEGORY_BREAD_CRUMB",
+                      "source_view_str": "CATEGORY_BREAD_CRUMB"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "MAP",
+      "widgets": [
+        {
+          "widget_type": "MAP_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.MapRowData",
+            "location": {
+              "type": "FUZZY",
+              "fuzzy_data": {
+                "point": {
+                  "latitude": 35.764,
+                  "longitude": 51.284
+                },
+                "radius": 500
+              }
+            },
+            "image_url": "https://example.com/img/map.png"
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "NOTE",
+      "widgets": [
+        {
+          "widget_type": "NOTE",
+          "data": {
+            "@type": "type.googleapis.com/widgets.NoteData",
+            "title": "یادداشت من",
+            "button_title": "ویرایش یادداشت",
+            "post_token": "gaTEST003",
+            "icon_button": {
+              "icon": {
+                "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/more_vert.png",
+                "image_url_light": "https://example.com/icons/light/icon_secondary/v1/more_vert.png",
+                "icon_name": "MORE_VERT",
+                "icon_color": "ICON_SECONDARY"
+              },
+              "action": {
+                "type": "LOAD_MENU",
+                "payload": {
+                  "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+                  "menu": {
+                    "items": [
+                      {
+                        "text": "ویرایش یادداشت",
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/edit.png",
+                          "image_url_light": "https://example.com/icons/light/icon_secondary/v1/edit.png",
+                          "icon_name": "EDIT",
+                          "icon_color": "ICON_SECONDARY"
+                        },
+                        "action": {
+                          "type": "NOTE",
+                          "payload": {
+                            "@type": "type.googleapis.com/widgets.NotePayload",
+                            "post_token": "gaTEST003",
+                            "max_character_count": 256
+                          }
+                        },
+                        "alignment": "RIGHT"
+                      },
+                      {
+                        "text": "حذف یادداشت",
+                        "icon": {
+                          "image_url_dark": "https://example.com/icons/dark/icon_primary/v1/trash_o.png",
+                          "image_url_light": "https://example.com/icons/light/icon_primary/v1/trash_o.png",
+                          "icon_name": "TRASH_O",
+                          "icon_color": "ICON_PRIMARY"
+                        },
+                        "action": {
+                          "type": "MAKE_NETWORK_CALL",
+                          "payload": {
+                            "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+                            "grpc_request_path": "/yaad_v2.YaadV2/DeleteNoteV2",
+                            "rest_request_path": "/yaad/delete-note-v2",
+                            "request_data": {
+                              "@type": "type.googleapis.com/yaad_v2.DeleteNoteV2Request.RequestData",
+                              "token": "gaTEST003"
+                            },
+                            "needs_auth": true
+                          }
+                        },
+                        "alignment": "RIGHT",
+                        "state": "STATE_NEGATIVE"
+                      }
+                    ],
+                    "banner": {}
+                  },
+                  "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "section_name": "STATIC",
+      "widgets": [
+        {
+          "widget_type": "SELECTOR_ROW",
+          "data": {
+            "@type": "type.googleapis.com/widgets.SelectorRowData",
+            "title": "گزارش آگهی",
+            "action": {
+              "type": "OPEN_FORM_PAGE",
+              "payload": {
+                "@type": "type.googleapis.com/widgets.OpenFormPagePayload",
+                "grpc_servicer": "/post_quality.PostQualityFeedback/GetFeedbackForm",
+                "request_data": {
+                  "@type": "type.googleapis.com/post_quality.GetFeedbackFormRequest.RequestData",
+                  "post_token": "gaTEST003"
+                },
+                "rest_request_path": "/v8/post-quality/feedback-form"
+              }
+            },
+            "has_divider": true,
+            "icon": {
+              "image_url_dark": "https://example.com/icons/dark/icon_secondary/v1/report.png",
+              "image_url_light": "https://example.com/icons/light/icon_secondary/v1/report.png",
+              "icon_name": "REPORT",
+              "icon_color": "ICON_SECONDARY"
+            },
+            "last_notification_date": "0001-01-01T00:00:00Z"
+          }
+        }
+      ]
+    }
+  ],
+  "share": {
+    "title": "ویلای نمونه ۲۸۵ متری",
+    "web_url": "https://divar.ir/v/gaTEST003"
+  },
+  "seo": {
+    "title": "ویلای نمونه ۲۸۵ متری در تهران",
+    "description": "آگهی ویلای نمونه ۲۸۵ متری",
+    "android_package_name": "ir.divar",
+    "web_info": {
+      "title": "ویلای نمونه ۲۸۵ متری",
+      "district_persian": "شهران شمالی",
+      "city_persian": "تهران",
+      "category_slug_persian": "فروش خانه و ویلا"
+    },
+    "unavailable_after": "2026-11-11T16:00:15.67994",
+    "bread_crumb": [
+      {
+        "name": "فروش خانه و ویلا",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "category": {
+                "str": {
+                  "value": "house-villa-sell"
+                }
+              },
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "151"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "فروش مسکونی",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "category": {
+                "str": {
+                  "value": "residential-sell"
+                }
+              },
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "151"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "املاک",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "category": {
+                "str": {
+                  "value": "real-estate"
+                }
+              },
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "151"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "شهران شمالی",
+        "search_data": {
+          "form_data": {
+            "data": {
+              "districts": {
+                "repeated_string": {
+                  "value": [
+                    "151"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "1",
+        "search_data": {
+          "form_data": {}
+        }
+      },
+      {
+        "name": "دیوار"
+      }
+    ],
+    "post_seo_schema": {
+      "url": "https://divar.ir/v/gaTEST003",
+      "accommodationCategory": "فروش خانه و ویلا",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "address": "تهران, شهران شمالی",
+        "latitude": "35.764",
+        "longitude": "51.284"
+      },
+      "description": "توضیحات نمونه برای تست.\nخانه ویلایی با ۲۸۵ متر زمین و ۱۴۰ متر بنا.\nحیاط و استخر دارد.",
+      "numberOfRooms": "دو",
+      "@type": "House",
+      "web_info": {
+        "category_slug_persian": "فروش خانه و ویلا",
+        "title": "ویلای نمونه ۲۸۵ متری",
+        "city_persian": "تهران",
+        "district_persian": "شهران شمالی"
+      },
+      "image": "https://example.com/img/1.jpg",
+      "@context": "https://schema.org",
+      "name": "ویلای نمونه ۲۸۵ متری",
+      "floorSize": {
+        "value": "140",
+        "unitCode": "MTK",
+        "@type": "QuantitativeValue"
+      }
+    },
+    "image_url": "https://example.com/img/1.jpg"
+  },
+  "webengage": {
+    "rent": 0,
+    "cat_2": "residential-sell",
+    "gender": "",
+    "token": "gaTEST003",
+    "business_ref": "",
+    "cat_1": "real-estate",
+    "brand_model": "",
+    "credit": 0,
+    "business_type": "personal",
+    "image_count": 16,
+    "district": "north-shahran",
+    "price": 89999998976,
+    "city": "tehran",
+    "category": "house-villa-sell",
+    "status": "",
+    "cat_3": "house-villa-sell",
+    "originality": "",
+    "source_view": ""
+  },
+  "analytics": {
+    "cat1": "real-estate",
+    "cat2": "residential-sell",
+    "cat3": "house-villa-sell",
+    "city": "tehran"
+  },
+  "city": {
+    "city_id": "1",
+    "name": "تهران",
+    "parent_id": "904",
+    "second_slug": "tehran"
+  }
+}
