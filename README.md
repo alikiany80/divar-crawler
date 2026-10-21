@@ -145,12 +145,24 @@ Pagination works like this: the next page request sends the previous response's 
 npm test        # = node --test "tests/**/*.test.js"
 ```
 
+The suite currently has **49 offline tests** (Node.js built-in `node:test`).
 The tests use **sanitized** fixtures in `tests/fixtures/divar/`. These keep the real payload structure but contain
 synthetic titles, descriptions, publisher names, tokens (`gaTEST…`) and image URLs (`example.com`). A contract test
 checks that every normalized fixture validates against the schema. It uses the small in-repo validator in
 `tests/schema-validator.js`.
 
 ---
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| `HTTP 429` or slow runs | Divar rate-limits above ~2.5 req/s. Keep `DIVAR_DELAY_MS` ≥ 1000 and do not run parallel crawls. The client backs off automatically. |
+| Exit code `2` | Invalid flags or environment values. Run `node bin/divar-crawler.js --help`. |
+| `SINK_URL and SINK_TOKEN are required` | Both are required only for `--output=http`. |
+| `database is locked` | Another run uses the same `--db`; wait for it or pass another file. |
+| `DIVAR_CITY_IDS` ignored | City ids are read from the environment only (there is no CLI flag); `1` is Tehran. |
+| Node < 22.13 | The crawler uses `node:sqlite`; upgrade Node. |
 
 ## فارسی
 
@@ -164,3 +176,7 @@ checks that every normalized fixture validates against the schema. It uses the s
 - **هیچ اطلاعات تماسی (شماره تلفن) دریافت یا ذخیره نمی‌شود.**
 - فقط برای استفادهٔ شخصی و آموزشی است. قوانین و شرایط استفادهٔ دیوار را رعایت کنید.
 - تست‌ها: `npm test`
+
+## License
+
+[MIT](LICENSE) © 2026 alikiany80
