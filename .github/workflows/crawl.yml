@@ -13,7 +13,7 @@ on:
       pages:
         description: 'Pages to crawl per category'
         required: false
-        default: '3'
+        default: '2'
 
 concurrency:
   group: crawl-divar
@@ -22,11 +22,13 @@ concurrency:
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -45,9 +47,10 @@ jobs:
         env:
           SINK_URL: ${{ secrets.SINK_URL }}
           SINK_TOKEN: ${{ secrets.SINK_TOKEN }}
-          DIVAR_DELAY_MS: 1500
+          DIVAR_DELAY_MS: 1200
+          NODE_OPTIONS: "--no-warnings"
         run: |
           mkdir -p data
           MODE="${{ github.event.inputs.mode || 'recent' }}"
-          PAGES="${{ github.event.inputs.pages || '3' }}"
-          node bin/divar-crawler.js --mode="$MODE" --pages="$PAGES" --output=http,sqlite --stop-after=25
+          PAGES="${{ github.event.inputs.pages || '2' }}"
+          node bin/divar-crawler.js --mode="$MODE" --pages="$PAGES" --output=http,sqlite --stop-after=15
