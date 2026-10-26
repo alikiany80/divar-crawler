@@ -1,4 +1,4 @@
-const { parseInteger, parseDecimal, currentJalaliYear, toEnglishDigits } = require('../text');
+const { parseInteger, parseDecimal, currentJalaliYear, toEnglishDigits, parseRelativePersianDate } = require('../text');
 const { normalizeKey, parseMoneyText, parsePublisherFromBottomText } = require('./parser');
 
 const SOURCE = 'divar';
@@ -177,6 +177,7 @@ function normalizeDivarSummary(row, category) {
     publisherName: redactPhones(parsePublisherFromBottomText(row.bottom_description_text)),
     coverImageUrl: row.image_url || null,
     imageCount: Number.isInteger(row.image_count) ? row.image_count : null,
+    publishedAt: row._sortDate || parseRelativePersianDate(row.bottom_description_text) || null,
     hasFullDetails: false,
     details: {
       list_row_json: stripPrivateFields(row)
@@ -192,10 +193,19 @@ function normalizeDivarDetails(parsed, rawPost, summary = null) {
   const mapped = mapAttributes(parsed.attributes, parsed.features);
   const webengage = parsed.webengage;
 
-  // Fallbacks from analytics payload (credit/rent are exact; `price` has float artifacts so it is not used).
+  // Fallbacks from rentSlider or analytics payload
+  const slider = parsed.rentSlider;
   if (listingType === 'RENT') {
-    if (mapped.priceToman === undefined && Number.isFinite(Number(webengage.credit))) mapped.priceToman = Number(webengage.credit);
-    if (mapped.rentToman === undefined && Number.isFinite(Number(webengage.rent))) mapped.rentToman = Number(webengage.rent);
+    const sliderCredit = slider?.credit?.value ? Number(slider.credit.value) : null;
+    const sliderRent = slider?.rent?.value ? Number(slider.rent.value) : null;
+    if (mapped.priceToman === undefined) {
+      if (Number.isFinite(sliderCredit) && sliderCredit > 0) mapped.priceToman = sliderCredit;
+      else if (Number.isFinite(Number(webengage.credit))) mapped.priceToman = Number(webengage.credit);
+    }
+    if (mapped.rentToman === undefined) {
+      if (Number.isFinite(sliderRent) && sliderRent > 0) mapped.rentToman = sliderRent;
+      else if (Number.isFinite(Number(webengage.rent))) mapped.rentToman = Number(webengage.rent);
+    }
   }
 
   if (mapped.pricePerMeter === undefined && listingType === 'BUY' && mapped.priceToman > 0 && mapped.areaM2 > 0) {
@@ -204,7 +214,6 @@ function normalizeDivarDetails(parsed, rawPost, summary = null) {
 
   const yearBuilt = nullIfUndefined(mapped.yearBuilt);
   const token = parsed.token || summary?.sourceId;
-  const slider = parsed.rentSlider;
   const businessType = webengage.business_type || null;
 
   return {
@@ -222,13 +231,22 @@ function normalizeDivarDetails(parsed, rawPost, summary = null) {
     latitude: parsed.map?.latitude ?? null,
     longitude: parsed.map?.longitude ?? null,
     locationIsExact: parsed.map ? parsed.map.exact : null,
-    priceToman: nullIfUndefined(mapped.priceToman),
-    rentToman: nullIfUndefined(mapped.rentToman),
+    priceToman: (() => {
+      let p = nullIfUndefined(mapped.priceToman);
+      return (p && p > 100_000_000 && p % 1000 !== 0) ? Math.round(p / 1000) * 1000 : p;
+    })(),
+    rentToman: (() => {
+      let r = nullIfUndefined(mapped.rentToman);
+      return (r && r < 500_000) ? null : r;
+    })(),
     pricePerMeter: nullIfUndefined(mapped.pricePerMeter),
     isPriceNegotiable: nullIfUndefined(mapped.isPriceNegotiable),
     areaM2: nullIfUndefined(mapped.areaM2),
     landAreaM2: nullIfUndefined(mapped.landAreaM2),
-    rooms: nullIfUndefined(mapped.rooms),
+    rooms: (() => {
+      let rm = nullIfUndefined(mapped.rooms);
+      return (rm !== null && (rm < 0 || rm > 10)) ? null : rm;
+    })(),
     yearBuilt,
     buildingAge: yearBuilt ? currentJalaliYear() - yearBuilt : null,
     floor: nullIfUndefined(mapped.floor),
@@ -241,10 +259,10 @@ function normalizeDivarDetails(parsed, rawPost, summary = null) {
     hasBalcony: nullIfUndefined(mapped.hasBalcony),
     publisherKind: businessType === 'personal' ? 'PERSONAL' : (businessType ? 'AGENCY' : null),
     publisherName: summary?.publisherName || null,
-    coverImageUrl: parsed.images[0]?.url || summary?.coverImageUrl || null,
+    coverImageUrl: (parsed.images[0]?.url ? parsed.images[0].url.replace('/webp_post/', '/webp_thumbnail/') : (summary?.coverImageUrl || null)),
     imageCount: parsed.images.length,
-    publishedAt: parsed.timeline.publishedAt,
-    sourceUpdatedAt: parsed.timeline.updatedAt,
+    publishedAt: parsed.timeline.publishedAt || summary?.publishedAt || null,
+    sourceUpdatedAt: parsed.timeline.updatedAt || summary?.sourceUpdatedAt || null,
     hasFullDetails: true,
     images: parsed.images,
     attributes: parsed.attributes.map(a => ({ ...a, value: redactPhones(a.value) })),

@@ -1,0 +1,53 @@
+name: crawl
+
+on:
+  schedule:
+    # Run every hour at minute 45 (staggered from Kilid)
+    - cron: '45 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Crawl mode (recent or full)'
+        required: false
+        default: 'recent'
+      pages:
+        description: 'Pages to crawl per category'
+        required: false
+        default: '3'
+
+concurrency:
+  group: crawl-divar
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restore crawl state cache
+        uses: actions/cache@v4
+        with:
+          path: data/divar.sqlite
+          key: divar-state-${{ github.run_id }}
+          restore-keys: |
+            divar-state-
+
+      - name: Run Divar Crawler
+        env:
+          SINK_URL: ${{ secrets.SINK_URL }}
+          SINK_TOKEN: ${{ secrets.SINK_TOKEN }}
+          DIVAR_DELAY_MS: 1500
+        run: |
+          mkdir -p data
+          MODE="${{ github.event.inputs.mode || 'recent' }}"
+          PAGES="${{ github.event.inputs.pages || '3' }}"
+          node bin/divar-crawler.js --mode="$MODE" --pages="$PAGES" --output=http,sqlite --stop-after=25

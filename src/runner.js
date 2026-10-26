@@ -65,6 +65,9 @@ class CrawlRunner {
       if (!items.length) { stats.stopReason = 'empty_page'; break; }
 
       for (const summary of items) {
+        if (summary.cityName && !['تهران', 'Tehran', 'tehran'].includes(summary.cityName.trim())) {
+          continue; // skip out-of-scope non-Tehran listings
+        }
         if (seenThisRun.has(summary.sourceId)) continue; // pinned/bumped posts repeat across pages
         seenThisRun.add(summary.sourceId);
         stats.listingsCrawled++;

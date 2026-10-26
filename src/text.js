@@ -84,7 +84,58 @@ function currentJalaliYear(now = new Date()) {
   return gy - (beforeNowruz ? 622 : 621);
 }
 
+
+function parseRelativePersianDate(text, now = new Date()) {
+  if (!text) return null;
+  const s = toEnglishDigits(String(text)).trim();
+
+  if (/^(لحظاتی|چند لحظه|همین الان)/.test(s)) {
+    return now.toISOString();
+  }
+  if (/^دقایقی پیش/.test(s)) {
+    return new Date(now.getTime() - 5 * 60 * 1000).toISOString();
+  }
+
+  let m = s.match(/(\d+)\s*دقیقه\s*پیش/);
+  if (m) return new Date(now.getTime() - Number(m[1]) * 60 * 1000).toISOString();
+
+  m = s.match(/(\d+)\s*ساعت\s*پیش/);
+  if (m) return new Date(now.getTime() - Number(m[1]) * 60 * 60 * 1000).toISOString();
+  if (/^ساعاتی پیش/.test(s) || /^یک ساعت پیش/.test(s)) {
+    return new Date(now.getTime() - 2 * 60 * 60 * 1000).toISOString();
+  }
+
+  if (/^دیروز/.test(s)) return new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();
+  if (/^پریروز/.test(s)) return new Date(now.getTime() - 48 * 60 * 60 * 1000).toISOString();
+
+  m = s.match(/(\d+)\s*روز\s*پیش/);
+  if (m) return new Date(now.getTime() - Number(m[1]) * 24 * 60 * 60 * 1000).toISOString();
+
+  m = s.match(/(\d+)\s*هفته\s*پیش/);
+  if (m) return new Date(now.getTime() - Number(m[1]) * 7 * 24 * 60 * 60 * 1000).toISOString();
+  if (/^یک هفته پیش/.test(s)) return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+  m = s.match(/(\d+)\s*ماه\s*پیش/);
+  if (m) return new Date(now.getTime() - Number(m[1]) * 30 * 24 * 60 * 60 * 1000).toISOString();
+  if (/^یک ماه پیش/.test(s)) return new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+
+  m = s.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
+  if (m) {
+    const jy = Number(m[1]);
+    const jm = Number(m[2]);
+    const jd = Number(m[3]);
+    if (jy > 1300 && jy < 1500 && jm >= 1 && jm <= 12 && jd >= 1 && jd <= 31) {
+      const { gy, gm, gd } = jalaliToGregorian(jy, jm, jd);
+      const utcMs = Date.UTC(gy, gm - 1, gd, 12, 0) - (3.5 * 60 * 60 * 1000);
+      return new Date(utcMs).toISOString();
+    }
+  }
+
+  return parsePersianDateTime(text);
+}
+
 module.exports = {
+  parseRelativePersianDate,
   toEnglishDigits,
   parseInteger,
   parseDecimal,

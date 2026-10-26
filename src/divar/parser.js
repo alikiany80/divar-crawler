@@ -52,7 +52,11 @@ function extractPostRows(searchResponse) {
   const widgets = Array.isArray(searchResponse?.list_widgets) ? searchResponse.list_widgets : [];
   return widgets
     .filter(w => w?.widget_type === 'POST_ROW')
-    .map(w => w.data)
+    .map(w => {
+      const data = w.data || {};
+      data._sortDate = w.action_log?.server_side_info?.info?.sort_date || null;
+      return data;
+    })
     .filter(d => d?.action?.payload?.token || d?.token);
 }
 
@@ -221,12 +225,26 @@ function parsePostDetail(post) {
     .map(c => c.text).filter(Boolean);
   const listData = collectListData(sectionWidgets(post, 'LIST_DATA'));
 
+  const timeline = parseTimeline(titleSection.timeline);
+  if (!timeline.publishedAt && post.seo?.unavailable_after) {
+    try {
+      const unavail = new Date(post.seo.unavailable_after);
+      if (!isNaN(unavail.getTime())) {
+        timeline.publishedAt = new Date(unavail.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+      }
+    } catch {}
+  }
+  const sortDate = post.contact?.action_log?.server_side_info?.info?.sort_date || null;
+  if (!timeline.publishedAt && sortDate) {
+    timeline.publishedAt = sortDate;
+  }
+
   return {
-    token: post.webengage?.token || null,
+    token: post.webengage?.token || post.contact?.action_log?.server_side_info?.info?.post_token || null,
     title: titleSection.title || post.share?.title || null,
     description: descriptionRow?.data?.text || null,
     location: parseLocationLine(titleSection.locationLine),
-    timeline: parseTimeline(titleSection.timeline),
+    timeline,
     images: parseImages(sectionWidgets(post, 'IMAGE')),
     map: parseMap(sectionWidgets(post, 'MAP')),
     breadcrumbs: (breadcrumb?.parent_items || []).map(i => i.title).filter(Boolean),
