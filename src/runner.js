@@ -86,7 +86,9 @@ class CrawlRunner {
 
         if (known) {
           stats.updatedListings++;
-          consecutiveExisting++;
+          if (known.content_hash !== contentHash(listing)) {
+            consecutiveExisting++;
+          }
         } else {
           stats.newListings++;
           consecutiveExisting = 0;
