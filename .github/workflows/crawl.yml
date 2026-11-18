@@ -47,10 +47,12 @@ jobs:
         env:
           SINK_URL: ${{ secrets.SINK_URL }}
           SINK_TOKEN: ${{ secrets.SINK_TOKEN }}
+          HTTP_TIMEOUT_MS: "150000"
+          SINK_BATCH_SIZE: "10"
           DIVAR_DELAY_MS: 1200
           NODE_OPTIONS: "--no-warnings"
         run: |
           mkdir -p data
           MODE="${{ github.event.inputs.mode || 'recent' }}"
-          PAGES="${{ github.event.inputs.pages || '2' }}"
+          PAGES="${{ github.event.inputs.pages || '1' }}"
           node bin/divar-crawler.js --mode="$MODE" --pages="$PAGES" --output=http,sqlite --stop-after=15
