@@ -1,9 +1,8 @@
 name: crawl
 
 on:
-  schedule:
-    # Run every hour at minute 45 (staggered from Kilid)
-    - cron: '45 * * * *'
+  # Scheduled outside GitHub: an n8n workflow dispatches this every 20 minutes
+  # (workflow_dispatch below). Keep the cron off so runs never double up.
   workflow_dispatch:
     inputs:
       mode:
@@ -47,8 +46,8 @@ jobs:
         env:
           SINK_URL: ${{ secrets.SINK_URL }}
           SINK_TOKEN: ${{ secrets.SINK_TOKEN }}
-          HTTP_TIMEOUT_MS: "150000"
-          SINK_BATCH_SIZE: "10"
+          HTTP_TIMEOUT_MS: "60000"
+          SINK_BATCH_SIZE: "25"
           DIVAR_DELAY_MS: 1200
           NODE_OPTIONS: "--no-warnings"
         run: |
