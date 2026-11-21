@@ -1,7 +1,7 @@
 name: crawl
 
 on:
-  # Scheduled outside GitHub: an n8n workflow dispatches this every 20 minutes
+  # Scheduled outside GitHub: an n8n workflow dispatches this every 3 hours
   # (workflow_dispatch below). Keep the cron off so runs never double up.
   workflow_dispatch:
     inputs:
@@ -12,7 +12,7 @@ on:
       pages:
         description: 'Pages to crawl per category'
         required: false
-        default: '2'
+        default: '4'
 
 concurrency:
   group: crawl-divar
@@ -21,7 +21,7 @@ concurrency:
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
 
     steps:
       - name: Checkout repository
@@ -47,11 +47,11 @@ jobs:
           SINK_URL: ${{ secrets.SINK_URL }}
           SINK_TOKEN: ${{ secrets.SINK_TOKEN }}
           HTTP_TIMEOUT_MS: "60000"
-          SINK_BATCH_SIZE: "25"
+          SINK_BATCH_SIZE: "50"
           DIVAR_DELAY_MS: 1200
           NODE_OPTIONS: "--no-warnings"
         run: |
           mkdir -p data
           MODE="${{ github.event.inputs.mode || 'recent' }}"
-          PAGES="${{ github.event.inputs.pages || '1' }}"
+          PAGES="${{ github.event.inputs.pages || '4' }}"
           node bin/divar-crawler.js --mode="$MODE" --pages="$PAGES" --output=http,sqlite --stop-after=15

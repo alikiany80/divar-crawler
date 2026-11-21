@@ -21,6 +21,13 @@ const MIGRATIONS = [
         CREATE INDEX idx_seen_last_seen_at ON seen(last_seen_at);
       `);
     }
+  },
+  {
+    version: 2,
+    name: 'seen_change_hash',
+    up(db) {
+      db.exec('ALTER TABLE seen ADD COLUMN change_hash TEXT');
+    }
   }
 ];
 
@@ -30,19 +37,34 @@ function contentHash(listing) {
   return crypto.createHash('sha256').update(JSON.stringify(rest)).digest('hex');
 }
 
+/** Fields that change between runs without the listing itself changing (raw row, relative dates, run metadata). */
+const VOLATILE_FIELDS = ['crawledAt', 'details', 'publishedAt', 'sourceUpdatedAt', 'hasFullDetails', 'buildingAge'];
+
+/**
+ * Stable hash of the list-page summary (as a contract listing) used for change detection.
+ * Always computed from the summary, never from details, so a known listing hashes the same on every run
+ * unless its visible content (title, price, location, images count, ...) changed.
+ */
+function changeHash(summaryListing) {
+  const rest = { ...summaryListing };
+  for (const f of VOLATILE_FIELDS) delete rest[f];
+  return crypto.createHash('sha256').update(JSON.stringify(rest)).digest('hex');
+}
+
 class StateStore {
   constructor(dbPath) {
     this.db = openDatabase(dbPath);
     runMigrations(this.db, 'state', MIGRATIONS);
     this.stmts = {
-      get: this.db.prepare('SELECT source_id, has_full_details, first_seen_at, last_seen_at, content_hash FROM seen WHERE source_id = ?'),
+      get: this.db.prepare('SELECT source_id, has_full_details, first_seen_at, last_seen_at, content_hash, change_hash FROM seen WHERE source_id = ?'),
       upsert: this.db.prepare(`
-        INSERT INTO seen (source_id, has_full_details, first_seen_at, last_seen_at, content_hash)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO seen (source_id, has_full_details, first_seen_at, last_seen_at, content_hash, change_hash)
+        VALUES (?, ?, ?, ?, ?, ?)
         ON CONFLICT (source_id) DO UPDATE SET
           has_full_details = MAX(seen.has_full_details, excluded.has_full_details),
           last_seen_at = excluded.last_seen_at,
-          content_hash = COALESCE(excluded.content_hash, seen.content_hash)
+          content_hash = COALESCE(excluded.content_hash, seen.content_hash),
+          change_hash = COALESCE(excluded.change_hash, seen.change_hash)
       `)
     };
   }
@@ -61,12 +83,12 @@ class StateStore {
     return !row || !row.has_full_details;
   }
 
-  /** Record listings as seen in one transaction: [{ sourceId, hasFullDetails, contentHash }]. */
+  /** Record listings as seen in one transaction: [{ sourceId, hasFullDetails, contentHash?, changeHash? }]. */
   markSeen(entries, { now = new Date().toISOString() } = {}) {
     if (!entries.length) return;
     transaction(this.db, () => {
       for (const e of entries) {
-        this.stmts.upsert.run(String(e.sourceId), e.hasFullDetails ? 1 : 0, now, now, e.contentHash || null);
+        this.stmts.upsert.run(String(e.sourceId), e.hasFullDetails ? 1 : 0, now, now, e.contentHash || null, e.changeHash || null);
       }
     });
   }
@@ -80,4 +102,4 @@ class StateStore {
   }
 }
 
-module.exports = { StateStore, contentHash };
+module.exports = { StateStore, contentHash, changeHash };

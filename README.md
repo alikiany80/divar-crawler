@@ -40,9 +40,9 @@ SINK_URL=https://ingest.example/api/listings/ SINK_TOKEN=... node bin/divar-craw
 | Flag | Default | Meaning |
 |---|---|---|
 | `--category=buy\|rent\|all` | `all` | which category to crawl |
-| `--mode=recent\|full` | `recent` | `recent` stops after `--stop-after` known listings in a row; `full` crawls every page up to `--pages` |
+| `--mode=recent\|full` | `recent` | `recent` stops after `--stop-after` known unchanged listings in a row; `full` crawls every page up to `--pages` |
 | `--pages=N` | 3 (`full`: 50) | maximum number of search pages per category |
-| `--stop-after=N` | 30 | how many known listings in a row end a `recent` crawl |
+| `--stop-after=N` | 30 | how many known unchanged listings in a row end a `recent` crawl |
 | `--no-details` | off | skip detail pages and keep only list summaries |
 | `--output=LIST` | `sqlite` | comma-separated list of `sqlite`, `jsonl`, `http` |
 | `--db=PATH` | `data/divar.sqlite` | SQLite file for crawl state and the `sqlite` output |
@@ -68,6 +68,15 @@ and HTTP counters (`requests`, `retries`, `rateLimited`).
 
 Crawl state (the `seen` table) is stored in the `--db` file whatever outputs you choose, so `recent` mode works with
 JSONL or HTTP too.
+
+### Change-only emission
+
+The `http` output only receives listings that are **new** (not in the `seen` state table) or whose list-page
+content **changed** since the last run (a `change_hash` of the summary, ignoring volatile fields such as
+`crawledAt`, relative dates and the raw payload), plus known listings whose full details were fetched for the
+first time. Unchanged known listings are not POSTed, which keeps write load on the ingest database low.
+The local `sqlite`/`jsonl` outputs and the `seen` table (hashes, `last_seen_at`) are still updated for every
+listing walked. In `recent` mode, `--stop-after=N` ends the crawl after N consecutive known **unchanged** listings.
 
 ### Record format
 

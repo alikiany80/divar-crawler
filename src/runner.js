@@ -1,7 +1,7 @@
 const { createLogger } = require('./logger');
 const { HttpError } = require('./http-client');
 const { toContractListing } = require('./listing');
-const { contentHash } = require('./state');
+const { contentHash, changeHash } = require('./state');
 
 /**
  * Crawl loop.
@@ -13,11 +13,17 @@ const { contentHash } = require('./state');
  *   fetchDetails(summary) -> normalized listing
  *
  * Modes:
- *   recent: walk newest-first until `maxPages` or `stopAfterExisting` consecutive known listings.
+ *   recent: walk newest-first until `maxPages` or `stopAfterExisting` consecutive known, UNCHANGED listings.
  *   full:   walk up to `maxPages` regardless of known listings.
  * Details are fetched for new listings and for known ones still missing full details.
  * A failing detail fetch is isolated: the summary is emitted instead and counted in detailsFailed.
+ *
+ * Change-only emission: change-only sinks (http) receive a listing only when it is new, its summary changeHash
+ * changed, or its full details were fetched for the first time. Unchanged known listings are not POSTed.
+ * Local sinks (sqlite, jsonl) still receive every walked listing, and the state store is updated for all of them.
  */
+const CHANGE_ONLY_SINKS = new Set(['http']);
+
 class CrawlRunner {
   constructor(adapter, state, sinks, { fetchDetails = true, now = () => new Date().toISOString() } = {}) {
     if (!sinks || !sinks.length) throw new Error('CrawlRunner needs at least one sink');
@@ -39,8 +45,11 @@ class CrawlRunner {
     }
   }
 
-  async emit(listing) {
-    for (const sink of this.sinks) await sink.write(listing);
+  async emit(listing, { changed = true } = {}) {
+    for (const sink of this.sinks) {
+      if (!changed && CHANGE_ONLY_SINKS.has(sink.name)) continue;
+      await sink.write(listing);
+    }
   }
 
   async crawl({ category, mode = 'recent', maxPages = 3, stopAfterExisting = 30 } = {}) {
@@ -55,7 +64,8 @@ class CrawlRunner {
       pagesCrawled: 0, listingsCrawled: 0, newListings: 0, updatedListings: 0, detailsFailed: 0, stopReason: 'max_pages'
     };
     const seenThisRun = new Set();
-    let consecutiveExisting = 0;
+    let consecutiveExisting = 0; // consecutive known listings whose content did not change
+    let unchanged = 0;
     let cursor = null;
 
     log.info('crawl started', { maxPages, stopAfterExisting, fetchDetails: this.fetchDetails });
@@ -73,20 +83,31 @@ class CrawlRunner {
         stats.listingsCrawled++;
 
         const known = this.state.get(summary.sourceId);
+        const summaryHash = changeHash(toContractListing(summary, { crawledAt: '' }));
         let record = summary;
+        let gotDetails = false;
         if (this.fetchDetails && (!known || !known.has_full_details)) {
           const details = await this.loadDetails(summary, log);
-          if (details) record = details;
+          if (details) { record = details; gotDetails = true; }
           else stats.detailsFailed++;
         }
 
+        // Legacy rows (before change_hash existed) are treated as unchanged once, and their hash is backfilled.
+        const contentChanged = known ? (known.change_hash != null && known.change_hash !== summaryHash) : true;
+        const changed = !known || contentChanged || gotDetails;
+
         const listing = toContractListing(record, { crawledAt: this.now() });
-        await this.emit(listing);
-        this.state.markSeen([{ sourceId: listing.sourceId, hasFullDetails: listing.hasFullDetails, contentHash: contentHash(listing) }]);
+        await this.emit(listing, { changed });
+        this.state.markSeen([{
+          sourceId: listing.sourceId, hasFullDetails: listing.hasFullDetails, contentHash: contentHash(listing), changeHash: summaryHash
+        }]);
 
         if (known) {
           stats.updatedListings++;
-          if (known.content_hash !== contentHash(listing)) {
+          if (changed) {
+            consecutiveExisting = 0;
+          } else {
+            unchanged++;
             consecutiveExisting++;
           }
         } else {
@@ -96,7 +117,7 @@ class CrawlRunner {
       }
 
       const { stopReason, ...counts } = stats;
-      log.info('page processed', { page: page ?? pageIndex, items: items.length, ...counts });
+      log.info('page processed', { page: page ?? pageIndex, items: items.length, ...counts, unchanged, consecutiveUnchanged: consecutiveExisting });
 
       if (mode === 'recent' && consecutiveExisting >= stopAfterExisting) { stats.stopReason = 'caught_up'; break; }
       if (!nextCursor) { stats.stopReason = 'last_page'; break; }
@@ -104,7 +125,7 @@ class CrawlRunner {
     }
 
     for (const sink of this.sinks) await sink.flush();
-    log.info('crawl finished', stats);
+    log.info('crawl finished', { ...stats, unchanged });
     return stats;
   }
 }
